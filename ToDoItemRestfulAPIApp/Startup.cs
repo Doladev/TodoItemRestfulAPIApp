@@ -20,11 +20,6 @@ namespace ToDoRestfulAPIApp
         // This method gets called by the runtimae. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddRazorPages();
-            //services.AddSwaggerGen(c =>
-            //{
-            //  c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "GpioService", Version = "v1" });
-            //});
             services.AddControllers();
             services.AddDbContext<TodoItemContext>(opt => opt.UseInMemoryDatabase("TodoItemList"));
         }
@@ -37,8 +32,6 @@ namespace ToDoRestfulAPIApp
                 app.UseDeveloperExceptionPage();
                 app.UseDefaultFiles();
                 app.UseStaticFiles();
-                //app.UseSwagger();
-                //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GpioService v1"));
             }
             else
             {
@@ -55,7 +48,6 @@ namespace ToDoRestfulAPIApp
 
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapRazorPages();
                 endpoints.MapControllers();
             });
         }
