@@ -48,6 +48,23 @@
                 </div>
             </form>
         </div>
+        <div id="editForm">
+            <form action="javascript:void(0);" onsubmit="updateToDoItem()" class="col-lg-6 offset-lg-3">
+                <div class="form-row justify-content-center">
+                    <input type="hidden" id="edit-id">
+                    <div class="input-group mb-3">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="edit-isComplete">
+                            <label for="edit-isComplete" class="form-check-label">Completed?</label>
+                        </div>
+                        <input type="text" id="edit-description" class="form-control ml-2" aria-label="Edit Items" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-success" type="submit">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
         <div class="table-responsive-sm">
             <div id="filters">
                 <div class="form-check form-check-inline">
