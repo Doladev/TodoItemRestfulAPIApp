@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ToDoRestfulAPIApp.Models;
 
-namespace ToDoItemRestfulAPIApp
+namespace ToDoRestfulAPIApp
 {
     public class Startup
     {
@@ -20,10 +17,16 @@ namespace ToDoItemRestfulAPIApp
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // This method gets called by the runtimae. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            //services.AddRazorPages();
+            //services.AddSwaggerGen(c =>
+            //{
+            //  c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "GpioService", Version = "v1" });
+            //});
+            services.AddControllers();
+            services.AddDbContext<TodoItemContext>(opt => opt.UseInMemoryDatabase("TodoItemList"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -32,6 +35,10 @@ namespace ToDoItemRestfulAPIApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDefaultFiles();
+                app.UseStaticFiles();
+                //app.UseSwagger();
+                //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GpioService v1"));
             }
             else
             {
@@ -41,7 +48,6 @@ namespace ToDoItemRestfulAPIApp
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
 
             app.UseRouting();
 
@@ -49,7 +55,8 @@ namespace ToDoItemRestfulAPIApp
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                //endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }
