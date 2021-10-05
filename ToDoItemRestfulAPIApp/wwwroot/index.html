@@ -35,6 +35,19 @@
 <body>
     <div class="container align-items-center">
         <h1 class="text-center mt-5 mb-5">To-do Items</h1>
+        <div id="insertForm">
+            <form action="javascript:void(0);" method="POST" onsubmit="addToDoItem()" class="col-lg-6 offset-lg-3">
+                <div class="form-row justify-content-center">
+                    <div class="input-group mb-3">
+                        <input type="text" id="add-name" class="form-control" placeholder="To do item" aria-label="Add Items" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="submit">Add</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
         <div class="table-responsive-sm">
             <div id="filters">
                 <div class="form-check form-check-inline">
@@ -44,6 +57,10 @@
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="completedCheckbox" value="Completed">
                     <label class="form-check-label" for="completedCheckbox">Completed</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+
                 </div>
             </div>
             <table class="table table-striped">

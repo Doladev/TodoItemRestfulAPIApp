@@ -3,13 +3,35 @@
 
 // Write your JavaScript code.
 
-const uri = 'api/TodoItemList';
+const uri = 'api/TodoItems';
 let todos = [];
 function getToDoItems() {
     fetch(uri)
         .then(response => response.json())
         .then(data => _displayToDoItems(data))
         .catch(error => console.error('Unable to get to-do items.', error));
+}
+
+function addToDoItem() {
+    const addNameTextbox = document.getElementById('add-name');
+    const item = {
+        isComplete: false,
+        description: addNameTextbox.value.trim()
+    };
+    fetch(uri, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(item)
+    })
+        .then(response => response.json())
+        .then(() => {
+            getToDoItems();
+            addNameTextbox.value = '';
+        })
+        .catch(error => console.error('Unable to add to-do item.', error));
 }
 
 function _displayCount(itemCount) {
